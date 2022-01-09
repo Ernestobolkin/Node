@@ -1,0 +1,11 @@
+1.What are 3 things node.js has that the client side javascript doesn’t
+have. And the reasons why.
+  01. Has global object
+  02. Has Proccess
+  03. Access file system
+
+2.What are 3 things the client side javascript has that node.js doesn’t
+have. And the reasons why
+  01. Has windows object
+  02. Access to document
+  03. include visualization
