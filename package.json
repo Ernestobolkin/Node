@@ -1,7 +1,6 @@
 {
   "name": "node",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/Ernestobolkin/Node/issues"
   },
-  "homepage": "https://github.com/Ernestobolkin/Node#readme"
+  "homepage": "https://github.com/Ernestobolkin/Node#readme",
+  "description": ""
 }
