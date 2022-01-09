@@ -16,5 +16,9 @@
     "url": "https://github.com/Ernestobolkin/Node/issues"
   },
   "homepage": "https://github.com/Ernestobolkin/Node#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "validator": "^13.7.0"
+  }
 }
