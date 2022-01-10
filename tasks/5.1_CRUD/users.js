@@ -15,7 +15,7 @@ const addNote = (email, name) => {
       name: name,
     });
     saveNotes(users);
-    console.log(chalk.green("New User Has Added"));
+    console.log(chalk.green("A New User Has been Added"));
   } else {
     console.log(chalk.red("User Name Taken"));
   }
