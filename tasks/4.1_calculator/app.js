@@ -1,6 +1,7 @@
 const yargs = require("yargs");
 const chalk = require("chalk");
 
+// using the yargs library
 yargs.command({
   command: "add",
   discribe: "adding 2 args",
@@ -37,4 +38,23 @@ yargs.command({
   },
 });
 
-yargs.parse();
+// yargs.parse();
+
+
+// using process 
+if (process.argv[2] === "add") {
+  let sum = +process.argv[3] + +process.argv[4];
+  console.log(sum);
+}
+if (process.argv[2] === "sub") {
+  let sum = +process.argv[3] - +process.argv[4];
+  console.log(sum);
+}
+if (process.argv[2] === "mult") {
+  let sum = +process.argv[3] * +process.argv[4];
+  console.log(sum);
+}
+if (process.argv[2] === "pow") {
+  let sum = +process.argv[3] / +process.argv[4];
+  console.log(sum);
+}
