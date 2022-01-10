@@ -4,17 +4,30 @@ const chalk = require("chalk");
 // using the yargs library
 yargs.command({
   command: "add",
-  discribe: "adding 2 args",
-  handler: function () {
-    let sum = yargs.argv._[1] + yargs.argv._[2];
+  describe: "adding 2 args",
+  builder: {
+    x: {
+      discribe: "Number",
+      demandOption: true,
+      type: "number",
+    },
+    y: {
+      discribe: "Number",
+      demandOption: true,
+      type: "number",
+    },
+  },
+  handler: function (argv) {
+    let sum = argv.x + argv.y;
     console.log(chalk.red(sum));
   },
 });
 
 yargs.command({
   command: "sub",
-  discribe: "substract 2 args",
+  describe: "substract 2 args",
   handler: function () {
+    console.log(yargs.argv);
     let sum = yargs.argv._[1] - yargs.argv._[2];
     console.log(chalk.red(sum));
   },
@@ -22,7 +35,7 @@ yargs.command({
 
 yargs.command({
   command: "mult",
-  discribe: "multiply 2 args",
+  describe: "multiply 2 args",
   handler: function () {
     let sum = yargs.argv._[1] * yargs.argv._[2];
     console.log(chalk.red(sum));
@@ -31,7 +44,7 @@ yargs.command({
 
 yargs.command({
   command: "pow",
-  discribe: "pow 2 args",
+  describe: "pow 2 args",
   handler: function () {
     let sum = yargs.argv._[1] / yargs.argv._[2];
     console.log(chalk.red(sum));
@@ -40,9 +53,7 @@ yargs.command({
 
 // yargs.parse();
 
-
-
-// using process 
+// using process
 if (process.argv[2] === "add") {
   let sum = +process.argv[3] + +process.argv[4];
   console.log(sum);
