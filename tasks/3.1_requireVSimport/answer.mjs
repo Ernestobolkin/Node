@@ -20,7 +20,8 @@
 // fs.writeFileSync("notes.txt", "This file was created by Node.js ");
 
 // 3. Create 3 functions using the export/import syntax.
-// const data = require("./.env")
+// const data = require("dotenv")
+// import "../../env"
 // console.log(data.NAME);
 
 // 3. Give 2 node.js environment variables that are not available when using the import syntax.
