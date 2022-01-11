@@ -2,6 +2,7 @@
   "name": "node",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,7 +19,10 @@
   "homepage": "https://github.com/Ernestobolkin/Node#readme",
   "description": "",
   "dependencies": {
+    "axios": "^0.24.0",
     "chalk": "^2.4.1",
+    "fetch": "^1.1.0",
+    "node-fetch": "^3.1.0",
     "uniqid": "^5.4.0",
     "validator": "^13.7.0",
     "yargs": "^17.3.1"
