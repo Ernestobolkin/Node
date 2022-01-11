@@ -18,9 +18,9 @@ const requestFunc = () => {
     console.log(JSON.parse(body));
   });
 };
-requestFunc()
-// 3
+// requestFunc()
 
+// 3
 const fetchFunc = () => {
   fetch("https://api.fbi.gov/wanted/v1/list")
     .then((res) => res.json())
