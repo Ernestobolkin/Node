@@ -15,11 +15,6 @@ yargs.command({
       demandOption: true,
       type: "string",
     },
-    // test: {
-    //   discribe: "User Name",
-    //   demandOption: true,
-    //   type: "string",
-    // },
   },
   handler(argv) {
     notes.addNote(argv.email, argv.name);
@@ -75,12 +70,12 @@ yargs.command({
     },
     newEmail: {
       discribe: "User Name",
-      demandOption: true,
+      demandOption: false,
       type: "string",
     },
     newName: {
       discribe: "User Name",
-      demandOption: true,
+      demandOption: false,
       type: "string",
     },
   },

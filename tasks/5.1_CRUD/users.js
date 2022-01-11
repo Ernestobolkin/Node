@@ -17,7 +17,7 @@ const addNote = (email, name) => {
     saveNotes(users);
     console.log(chalk.green("A New User Has been Added"));
   } else {
-    console.log(chalk.red("User Name Taken"));
+    console.log(chalk.red.inverse("User Name Taken"));
   }
 };
 
@@ -32,7 +32,7 @@ const update = (email, newEmail, newName) => {
     saveNotes(users);
     console.log(chalk.green("You Edited The User Succcessfully"));
   } else {
-    console.log(chalk.red("User Not found"));
+    console.log(chalk.red.inverse("User Not found"));
   }
 };
 
@@ -43,13 +43,13 @@ const removeNote = (email) => {
     console.log(chalk.green("User Has been removed"));
     saveNotes(filterdNotes);
   } else {
-    console.log(chalk.red("No User Found"));
+    console.log(chalk.red.inverse("No User Found"));
   }
 };
 
 const notes = () => {
   const users = loadUsers();
-  console.log(chalk.yellow("Users:"), users);
+  console.log(chalk.yellow.inverse("Users:"), users);
 };
 
 const saveNotes = (users) => {
@@ -66,7 +66,7 @@ const specificNote = (email) => {
     console.log(chalk.green("User Has been Found"));
     console.log(NoteFinder);
   } else {
-    console.log(chalk.red("Didnt Found The User"));
+    console.log(chalk.red.inverse("Didnt Found The User"));
   }
 };
 
@@ -76,6 +76,7 @@ const loadUsers = () => {
     const dataJSON = dataBuffer.toString();
     return JSON.parse(dataJSON);
   } catch (error) {
+    console.log(chalk.green.inverse("Created the DataBase"));
     return [];
   }
 };
