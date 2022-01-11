@@ -6,11 +6,19 @@ const request = require("request");
 import fetch from "node-fetch";
 
 // 1
+let data = null;
 const getData = async () => {
-  const { data } = await axios.get("https://api.fbi.gov/wanted/v1/list");
+  data = await axios.get("https://api.fbi.gov/wanted/v1/list");
+  // console.log(data.data);
+  test();
+};
+getData();
+
+const test = () => {
   console.log(data);
 };
-// getData();
+
+// isTest && console.log(data)
 
 // 2
 const requestFunc = () => {
@@ -18,7 +26,7 @@ const requestFunc = () => {
     console.log(JSON.parse(body));
   });
 };
-// requestFunc()
+// requestFunc();
 
 // 3
 const fetchFunc = () => {
