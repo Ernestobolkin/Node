@@ -67,32 +67,21 @@ const born = (arr) => {
 };
 
 const food = (arr) => {
-  const obj = {
-    meats:[],
-    fish:[]
-  };
+  const obj = {};
 
   arr.forEach((el) => {
-    console.log("==============");
     el.favoriteFoods.forEach((foodObj) => {
-
-      // console.log(foodObj.fish);
-
-// the problem seems to be here. foodObj is an object and the program tries to do forEach.
-      // foodObj.for((meatItem) => {
-      //   console.log(meatItem);
-      //   // obj[meatItem] = obj[meatItem] + 1 || 1;
-      // });
-      // foodObj.fish.forEach((fishItem) => {
-      //   obj[fishItem] = obj[fishItem] + 1 || 1;
-      // });
-// this is my solution
-obj.meats.push(foodObj.meats)
-obj.fish.push(foodObj.fish)
+      // console.log(foodObj);
+      Array.from(foodObj).forEach((meatItem) => {
+        // console.log();
+        obj[meatItem] = obj[meatItem] + 1 || 1;
+      });
+      foodObj.fish.forEach((fishItem) => {
+        obj[fishItem] = obj[fishItem] + 1 || 1;
+      });
     });
   });
   return obj;
 };
 
 console.log(food(data));
-
