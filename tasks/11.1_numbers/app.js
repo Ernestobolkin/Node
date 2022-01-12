@@ -1,0 +1,111 @@
+import express from "express";
+import chalk from "chalk";
+
+const app = express();
+const port = 8080;
+app.use(express.json());
+
+let numbersArr = [1, 2, 3, 4, 5, 6];
+
+app.get("/", (req, res) => {
+  res.send(`<h1 style='color:red'>${numbersArr}</h1>`);
+});
+
+app.post("/users", (req, res) => {
+  const { number } = req.body;
+  const sendBody = {
+    response: "success using post",
+    routeName: "POST",
+    body: {
+      number,
+    },
+  };
+  try {
+    if (numbersArr.includes(+number)) {
+      throw new Error(
+        `<h1>400</h1><h2 style='color:red'>Sorry, The Number ${number} Already Exists! </h2>`
+      );
+    } else {
+      numbersArr.push(number);
+      res.send(
+        `<h1 style='color:red'>${numbersArr.sort((a, b) => a - b)}</h1>`
+      );
+    }
+  } catch (err) {
+    res.send(err.toString());
+  }
+});
+
+// route and delete with params
+app.delete("/delete/:number", (req, res) => {
+  const { number } = req.params;
+  // const { number } = req.query;
+  // numbersArr = numbersArr.filter((num) => num !== +number);
+  const newArr = numbersArr.filter((num) => num !== +number);
+  try {
+    if (JSON.stringify(newArr) == JSON.stringify(numbersArr)) {
+      throw new Error(
+        `<h1>400</h1><h2 style='color:red'>Sorry, The Number ${number} Doesnt Exist! </h2>`
+      );
+    } else {
+      numbersArr = newArr;
+      res.send(
+        `<h1 style='color:red'>${numbersArr.sort((a, b) => a - b)}</h1>`
+      );
+    }
+  } catch (err) {
+    res.send(err.toString());
+  }
+});
+
+// route and delete with query
+app.delete("/delete", (req, res) => {
+  const { number } = req.query;
+  try {
+    const newArr = numbersArr.filter((num) => num !== +number);
+    if (JSON.stringify(newArr) == JSON.stringify(numbersArr)) {
+      throw new Error(
+        `<h1>400</h1><h2 style='color:red'>Sorry, The Number ${number} Isnt Exists! </h2>`
+      );
+    } else {
+      numbersArr = newArr;
+      res.send(
+        `<h1 style='color:red'>${numbersArr.sort((a, b) => a - b)}</h1>`
+      );
+    }
+  } catch (err) {
+    res.send(err.toString());
+  }
+
+  res.send(`<h1 style='color:red'>${numbersArr.sort((a, b) => a - b)}</h1>`);
+});
+
+app.put("/put/:number", (req, res) => {
+  const { number } = req.params;
+  const { newNumber } = req.body;
+
+  try{
+    // if(){
+
+    // }else{
+
+    // }
+  }catch(err){
+    res.send(err.toString());
+  }
+
+  numbersArr = numbersArr.map((num) => {
+    if (num === +number) {
+      return +newNumber;
+    } else {
+      return num;
+    }
+  });
+  console.log(+numbersArr);
+
+  res.send(`<h1 style='color:red'>${numbersArr.sort((a, b) => a - b)}</h1>`);
+});
+
+app.listen(port, () => {
+  console.log(chalk.yellow("Server is up on port"), chalk.green.inverse(port));
+});
