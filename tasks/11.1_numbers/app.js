@@ -65,7 +65,7 @@ app.delete("/delete", (req, res) => {
     const newArr = numbersArr.filter((num) => num !== +number);
     if (JSON.stringify(newArr) == JSON.stringify(numbersArr)) {
       throw new Error(
-        `<h1>400</h1><h2 style='color:red'>Sorry, The Number ${number} Isnt Exists! </h2>`
+        `<h1>400</h1><h2 style='color:red'>Sorry, The Number ${number} Doesnt Exist! </h2>`
       );
     } else {
       numbersArr = newArr;
@@ -84,26 +84,28 @@ app.put("/put/:number", (req, res) => {
   const { number } = req.params;
   const { newNumber } = req.body;
 
-  try{
-    // if(){
-
-    // }else{
-
-    // }
-  }catch(err){
+  try {
+    console.log(numbersArr.includes(number));
+    if (numbersArr.includes(+number)) {
+      numbersArr = numbersArr.map((num) => {
+        if (num === +number) {
+          return +newNumber;
+        } else {
+          return num;
+        }
+      });
+      res.send(
+        `<h1 style='color:red'>${numbersArr.sort((a, b) => a - b)}</h1>`
+      );
+    } else {
+      throw new Error(
+        `<h1>400</h1><h2 style='color:red'>Sorry, The Number ${number} Doesnt Exist! </h2>`
+      );
+    }
+  } catch (err) {
     res.send(err.toString());
   }
 
-  numbersArr = numbersArr.map((num) => {
-    if (num === +number) {
-      return +newNumber;
-    } else {
-      return num;
-    }
-  });
-  console.log(+numbersArr);
-
-  res.send(`<h1 style='color:red'>${numbersArr.sort((a, b) => a - b)}</h1>`);
 });
 
 app.listen(port, () => {
