@@ -3,9 +3,11 @@ const require = createRequire(import.meta.url);
 
 import chalk from "chalk";
 import express from "express";
+import uniqid from "uniqid";
+
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import uniqid from "uniqid";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
