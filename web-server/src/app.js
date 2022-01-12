@@ -8,25 +8,21 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-console.log(__filename);
-console.log(__dirname);
-
+const port = 8080;
 const app = express();
-app.use(express.static(path.join(__dirname, "../public/index.html")));
+app.use(express.static(path.join(__dirname, "../public")));
 // app.use(express.static(path.join(__dirname,'../public/index.html')))
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 app.get("/help", (req, res) => {
-  res.send({
-    name: "Ernest",
-  });
+  res.send("<h1>Help Center</h1>");
 });
 app.get("/about", (req, res) => {
-  res.send("testing express lib");
+  res.sendFile(path.join(__dirname, "../public/about.html"));
 });
 
-app.listen(3000, () => {
-  console.log(chalk.green("Server is up on port "), chalk.yellow("3000"));
+app.listen(port, () => {
+  console.log(chalk.green("Server is up on port "), chalk.yellow(port));
 });
