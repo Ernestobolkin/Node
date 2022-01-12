@@ -10,20 +10,20 @@
   * It leverages the Facebook GraphQL data stack
   * It’s easy to understand for most developers
 
-3. Sails.js
+3. Sails.js :
   * A lot of automated generators
   * No need for additional routing
   * Awesome frontend compatibility with different frontend technologies
   * Clear support for Web Sockets
   * Compatible with all databases
 
-4. Koa.js
+4. Koa.js :
   * Utilizes required generators to manage and handle callbacks
   * Has strong and efficient error handling processes
   * Building blocks based on components
   * Cascading middlewares and ditched callback hell
 
-5. Nest.js
+5. Nest.js :
   * Model-view-controller software architecture
   * Highly extensible and asynchronous framework
   * Provides full support to RESTful routing mechanism
