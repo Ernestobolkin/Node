@@ -1,0 +1,30 @@
+1. Express.js : 
+  * Fully customizable
+  * Standard for Node.js web middlewares
+  * Low learning curve
+  * More focus on browser
+
+2. Meteor.js : 
+  * It has the capability to manage larger projects
+  * Has rich and organized documentation community
+  * It leverages the Facebook GraphQL data stack
+  * It’s easy to understand for most developers
+
+3. Sails.js
+  * A lot of automated generators
+  * No need for additional routing
+  * Awesome frontend compatibility with different frontend technologies
+  * Clear support for Web Sockets
+  * Compatible with all databases
+
+4. Koa.js
+  * Utilizes required generators to manage and handle callbacks
+  * Has strong and efficient error handling processes
+  * Building blocks based on components
+  * Cascading middlewares and ditched callback hell
+
+5. Nest.js
+  * Model-view-controller software architecture
+  * Highly extensible and asynchronous framework
+  * Provides full support to RESTful routing mechanism
+  * Full support to web sockets and media streaming
