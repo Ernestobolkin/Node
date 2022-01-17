@@ -1,0 +1,23 @@
+1.1 – Write a MongoDb query to display all the documents in the restaurant collection:
+      
+
+1.2 - Write a MongoDb query to display all restaurants that have a specific cuisine:
+      
+
+1.3 - Write a MongoDb query that displays only kosher restaurants:
+      
+
+1.3 - Write a MongoDb query that displays only a specific cities restaurants:
+      
+
+1.5 - Write a MongoDb query to display a specific restaurants address:
+      
+
+1.6 - Write a MongoDb query to display a specific restaurants coordinates:
+      
+
+1.7 - Write a MongoDb query that should display all restaurants in ascending order by restaurant name:
+
+
+1.8 - Write a MongoDb query that should display all restaurants in ascending order by city names:
+    
