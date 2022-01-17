@@ -15,6 +15,7 @@ const createRestaurant = async ({
   cuisineType = "",
   isKosher = false,
   reviews = [],
+  testmongoDb = "",
 } = {}) => {
   try {
     const restaurant = await Restaurant.create({
@@ -23,19 +24,20 @@ const createRestaurant = async ({
       cuisineType,
       isKosher,
       reviews,
+      testmongoDb,
     });
-
     console.log(restaurant);
+    restaurant.save();
   } catch (err) {
     console.log(err.message);
   }
 };
 
 createRestaurant({
-  name: "Shani's Restaurant",
+  name: "hello world",
   address: {
-    city: "Haifa",
-    street: "ssss",
+    city: "test",
+    street: "ssssss",
     coordinates: [-77, 564, 40.67],
   },
   cuisineType: "test",
@@ -45,4 +47,5 @@ createRestaurant({
     ["December 18, 1993 02:24:00", 0],
     ["December 18, 1993 02:24:00", 0],
   ],
+  testmongoDb: "hello world ",
 });
