@@ -1,8 +1,10 @@
 import express from "express";
 import chalk from "chalk";
+import { middleware } from "yargs";
+
 
 const app = express();
-const port = 8080;
+const port = 8000;
 app.use(express.json());
 
 let numbersArr = [1, 2, 3, 4, 5, 6];
@@ -11,7 +13,7 @@ app.get("/", (req, res) => {
   res.send(`<h1 style='color:red'>${numbersArr}</h1>`);
 });
 
-app.post("/users", (req, res) => {
+app.post("/users",middleware, (req, res) => {
   const { number } = req.body;
   const sendBody = {
     response: "success using post",
