@@ -52,7 +52,7 @@ const createUser = async () => {
 
 const findById = async () => {
   try {
-    const user = await Restaurant.find({reviews:{$elemMatch:[["December 8, 2003 02:24:00"]]}});
+    const user = await Restaurant.find();
     console.log(user);
     console.log(
       chalk.yellow("================================================")

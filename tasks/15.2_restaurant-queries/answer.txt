@@ -70,6 +70,7 @@
       db.restaurants.find().forEach((res)=>{print(restaurant.address.coordinates)})
 
 
+                
                 3. Advanced Queries:
 
 
@@ -78,6 +79,10 @@
       db.restaurants.find({ name: /^z/gi });
 
 3.2 - Query how many documents you have from the restaurant collection:
+      Restaurant.find().count();
+      db.restaurants.count()
 
 
 3.3 - Write a MongoDb query to get restaurants that include reviews from a specific date:
+      
+      

@@ -33,4 +33,31 @@ const createRestaurant = async ({
   }
 };
 
+const test = async () => {
+  try{
+    const user = await Restaurant.find().count();
+    console.log(user);
+    
+  }catch(e){
+    console.log(e);
+  }
+};
 
+test()
+
+// createRestaurant({
+//   name: "hello asdasd world",
+//   address: {
+//     city: "tesasdt",
+//     street: "ssssasdss",
+//     coordinates: [-77, 564, 40.67],
+//   },
+//   cuisineType: "test",
+//   isKosher: false,
+//   reviews: [
+//     ["December 8, 2003 02:24:00", 1],
+//     ["December 18, 1993 02:24:00", 0],
+//     ["December 18, 1993 02:24:00", 0],
+//   ],
+//   testmongoDb: "hello world ",
+// });
