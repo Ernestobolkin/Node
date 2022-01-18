@@ -11,16 +11,18 @@ connect(
 );
 
 const product1 = {
-  name: "vans pro",
+  name: "id113",
   category: "shoes",
   isActive: true,
   details: {
     description: "snameproducts nameproducts nameproducts nameproducts",
     price: 120,
     images: ["img1", "img2", "img3"],
-    phone: 052,
+    phone: "+972503888569",
   },
 };
+//
+
 const product2 = {
   name: "T-Shirt",
   category: "Shirt",
@@ -30,7 +32,7 @@ const product2 = {
     price: 100,
     discount: 20,
     images: ["img1", "img2", "img3"],
-    phone: 052,
+    phone: +972123456789111,
   },
 };
 const product3 = {
@@ -41,13 +43,13 @@ const product3 = {
     description: "snameproducts nameproducts nameproducts nameproducts",
     price: 120,
     images: ["img1", "img2", "img3"],
-    phone: 052,
+    phone: +972542085662,
   },
 };
 
-const addP = async (product1) => {
+const addP = async (product) => {
   try {
-    const createP = await Product.create(product1);
+    const createP = await Product.create(product);
     console.log(createP);
     console.log("The Product Waw Created");
   } catch (e) {
@@ -56,5 +58,5 @@ const addP = async (product1) => {
 };
 
 addP(product1);
-addP(product2);
-addP(product3);
+// addP(product2);
+// addP(product3);

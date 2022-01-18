@@ -18,10 +18,16 @@ const detailsSchema = new Schema({
   images: {
     type: Array,
     required: true,
+    validate: function (value) {
+      return value.length >= 3 ? true : false;
+    },
   },
   phone: {
     type: String,
     required: true,
+    validate: function (value) {
+      return validator.isMobilePhone(value, "he-IL");
+    },
   },
   dataAdded: {
     type: Date,
