@@ -50,8 +50,8 @@
       db.restaurants.deleteOne({name:"ze"});
 
 1.13 - Delete all restaurants:
-      Restaurant.deleteOne({});
-      db.restaurants.deleteOne({})
+      Restaurant.deleteMany({});
+      db.restaurants.deleteMany({})
 
                 2. forEach Queries:
 
