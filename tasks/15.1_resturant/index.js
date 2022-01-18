@@ -27,9 +27,6 @@ const createRestaurant = async ({
       reviews,
       testmongoDb,
     });
-    console.log(chalk.bgMagenta("=============="));
-    console.log(restaurant);
-    console.log(chalk.bgMagenta("=============="));
     restaurant.save();
   } catch (err) {
     console.log(chalk.red(err.message));
@@ -37,10 +34,10 @@ const createRestaurant = async ({
 };
 
 createRestaurant({
-  name: "hello asdasd world",
+  name: "Shaked's Restaurant",
   address: {
-    city: "Dimona",
-    street: "ssssasdss",
+    city: "karmiel",
+    street: "dimonas street",
     coordinates: [-77, 564, 40.67],
   },
   cuisineType: "test",
