@@ -22,7 +22,7 @@ const createUser = async () => {
     console.log(e);
   }
 };
-// createUser()
+createUser();
 
 // 3. Create at least two posts
 const createPost = async ({ email, post }) => {
@@ -39,6 +39,7 @@ const createPost = async ({ email, post }) => {
     console.log(e);
   }
 };
+
 // createPost({
 //   email: "ernest@gmail.com",
 //   post: "Hey, My Name Is Ernest",
