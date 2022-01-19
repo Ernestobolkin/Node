@@ -40,10 +40,58 @@ const getIsActive = async (req, res) => {
 };
 
 const getProdutByrange = async (req, res) => {
-  // const { startingRange, endingRange } = req.body;
-  res.send("ok")
-  // res.send(`${startingRange}`)
-  // console.log(startingRange,endingRange);
+  const { startingRange, endingRange } = req.body;
+  const tes = await Product.where("details.price")
+    .gt(startingRange)
+    .lt(endingRange);
+  res.send(tes);
+};
+
+const updateActiveProdect = async (req, res) => {
+  const { id } = req.params;
+  const { discount } = req.body;
+
+  const product = await findById(id);
+  if (product.length !== 0) {
+    await Product.updateOne(
+      { _id: id },
+      { $set: { isActive: !product[0].isActive } }
+    );
+
+    if (!product[0].isActive) {
+      res.send(`product ${id} is now active`);
+      await Product.updateOne(
+        { _id: id },
+        { $set: { "details.discount": discount } }
+      );
+    } else {
+      res.send(`product ${id} is now off`);
+      await Product.updateOne({ _id: id }, { $set: { "details.discount": 0 } });
+    }
+  } else {
+    res.send(`product with id ${id} was not found`);
+  }
+};
+
+
+
+const deletProduct = async (req, res) => {
+  const { id } = req.params;
+  const product = await findById(id);
+  if (product.length !== 0) {
+    await Product.deleteOne({ _id: id });
+    res.send(`${id} was deleted successfully`);
+  }else{
+    res.send(`sorry ${id} was not found`)
+  }
+};
+const deletAllProduct = async (req, res) => {
+  await Product.deleteMany({});
+};
+
+const findById = async (id) => {
+  const user = await Product.find({ _id: id });
+  return user;
 };
 
 module.exports = {
@@ -52,4 +100,7 @@ module.exports = {
   getProduct,
   getIsActive,
   getProdutByrange,
+  updateActiveProdect,
+  deletProduct,
+  deletAllProduct,
 };
