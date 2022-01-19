@@ -85,7 +85,7 @@ const deletProduct = async (req, res) => {
     res.send(`sorry ${id} was not found`)
   }
 };
-const deletAllProduct = async (req, res) => {
+const deletAllProduct = async () => {
   await Product.deleteMany({});
 };
 
