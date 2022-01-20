@@ -54,13 +54,13 @@ const Product = model("products", productSchema);
 module.exports = Product;
 
 // {
-  // name: "T-Shirt",
-  // category: "Shirt",
-  // isActive: true,
-  // details: {
-  //   description: "snameproducts nameproducts nameproducts nameproducts",
-  //   price: 100,
-  //   discount: 20,
-  //   images: ["img1", "img2", "img3"],
-  //   phone: "+972542085662",
+//   name: "T-Shirt",
+//   category: "Shirt",
+//   isActive: true,
+//   details: {
+//     description: "snameproducts nameproducts nameproducts nameproducts",
+//     price: 100,
+//     discount: 20,
+//     images: ["img1", "img2", "img3"],
+//     phone: "+972542085662",
 //   },
