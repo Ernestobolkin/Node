@@ -73,8 +73,6 @@ const updateActiveProdect = async (req, res) => {
   }
 };
 
-
-
 const deletProduct = async (req, res) => {
   const { id } = req.params;
   const product = await findById(id);
