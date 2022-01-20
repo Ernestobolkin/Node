@@ -47,3 +47,7 @@ connect(
   },
   (e) => console.error(e)
 );
+
+const testFunc = ()=>{
+  console.log("testBranc");
+}
