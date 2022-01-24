@@ -1,4 +1,4 @@
-const { Schema, model, isModified } = require("mongoose");
+const { Schema, model } = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -39,7 +39,6 @@ UserSchema.methods.generateToken = async function () {
   const token = jwt.sign({ email: user.email }, "secretToken", {
     expiresIn: "1d",
   });
-  console.log(jwt.verify(token, "secretToken"));
   user.tokens = user.tokens.concat({ token });
   await user.save();
   return token;

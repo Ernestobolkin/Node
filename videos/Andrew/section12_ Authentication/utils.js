@@ -26,14 +26,20 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+const getlUser = async (req, res) => {
+  const { email } = req.params;
+  const usersData = await User.findOne({ email });
+  res.status(200).send(["User was found", usersData]);
+};
+
 const updateUser = async (req, res) => {
   const { email } = req.params;
   const { name, password } = req.body;
   try {
-    if (await User.findOne({ email })) {
-      const user = await User.findOne({ email });
-      user.name = name;
+    const user = await User.findOne({ email });
+    if (user) {
       user.password = password;
+      user.name = name;
       await user.save();
       res.status(200).send(user);
     } else {
@@ -52,7 +58,7 @@ const login = async (req, res) => {
       if (jwt.verify(token, "secretToken")) {
         user = await User.findByToken(token);
         if (!user) throw new Error("Token has expired");
-        return res.status(200).send(["Logged In", user, token]);
+        return res.status(200).send(["Loggedssss In", user, token]);
       } else {
         throw new Error("Token has expired");
       }
@@ -61,17 +67,32 @@ const login = async (req, res) => {
     const generateToken = await user.generateToken();
     res.status(200).send(["Logged In", user, generateToken]);
   } catch (error) {
+    console.log("catch");
     if (error.message.includes("expired")) {
       const user = await User.findByToken(token);
       if (user) {
-        user.tokens = user.tokens.filter((token) => {
-          token.token !== token;
-        });
+        console.log(user.tokens.length);
+        user.tokens = user.tokens.filter(
+          (filToken) => filToken.token !== token
+        );
+        console.log(user.tokens.length);
         await user.save();
-      }  
+      }
     }
     res.status(400).send(error.message);
   }
 };
 
-module.exports = { addUser, getAllUsers, updateUser, login };
+const logout = async (req, res) => {
+  try {
+    req.user.tokens = req.user.tokens.filter((filToken) => {
+      return filToken.token !== req.token;
+    });
+    await req.user.save();
+    res.send("Logged Out");
+  } catch (e) {
+    res.status(500).send(e.message);
+  }
+};
+
+module.exports = { addUser, getAllUsers, updateUser, login, getlUser, logout };
