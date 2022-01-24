@@ -73,16 +73,14 @@ const updateActiveProdect = async (req, res) => {
   }
 };
 
-
-
 const deletProduct = async (req, res) => {
   const { id } = req.params;
   const product = await findById(id);
   if (product.length !== 0) {
     await Product.deleteOne({ _id: id });
     res.send(`${id} was deleted successfully`);
-  }else{
-    res.send(`sorry ${id} was not found`)
+  } else {
+    res.send(`sorry ${id} was not found`);
   }
 };
 const deletAllProduct = async () => {

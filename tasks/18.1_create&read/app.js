@@ -15,7 +15,7 @@ const {
 
 const app = express();
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8000;
 
 app.use(cors());
 app.use(express.json());
@@ -35,11 +35,12 @@ app.post("/product", addProduct);
 
 app.delete("/product/:id", deletProduct);
 
-app.delete("/products",deletAllProduct);
+app.delete("/products", deletAllProduct);
 
 app.listen(port, () => {
   console.log(chalk.green("Server is up on port ") + port);
 });
+
 connect(
   "mongodb://localhost/usersDataBase",
   () => {
@@ -47,7 +48,3 @@ connect(
   },
   (e) => console.error(e)
 );
-
-const testFunc = ()=>{
-  console.log("testBranc");
-}
