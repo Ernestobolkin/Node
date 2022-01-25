@@ -51,43 +51,24 @@ const updateUser = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  let user;
-  const { email, password, token } = req.body;
-  try {
-    if (token) {
-      if (jwt.verify(token, "secretToken")) {
-        user = await User.findByToken(token);
-        if (!user) throw new Error("Token has expired");
-        return res.status(200).send(["Loggedssss In", user, token]);
-      } else {
-        throw new Error("Token has expired");
-      }
-    }
-    user = await User.findByCredentials(email, password);
-    const generateToken = await user.generateToken();
-    res.status(200).send(["Logged In", user, generateToken]);
-  } catch (error) {
-    console.log("catch");
-    if (error.message.includes("expired")) {
-      const user = await User.findByToken(token);
-      if (user) {
-        console.log(user.tokens.length);
-        user.tokens = user.tokens.filter(
-          (filToken) => filToken.token !== token
-        );
-        console.log(user.tokens.length);
-        await user.save();
-      }
-    }
-    res.status(400).send(error.message);
-  }
+  const { user, token } = req;
+  res.status(200).send(["Logged In", user, token]);
 };
 
 const logout = async (req, res) => {
+  const { user, token } = req;
   try {
-    req.user.tokens = req.user.tokens.filter((filToken) => {
-      return filToken.token !== req.token;
-    });
+    user.tokens = user.tokens.filter((filToken) =>  filToken.token !== token);
+    await user.save();
+    res.send("Logged Out");
+  } catch (e) {
+    res.status(500).send(e.message);
+  }
+};
+
+const logoutAll = async (req, res) => {
+  try {
+    req.user.tokens = [];
     await req.user.save();
     res.send("Logged Out");
   } catch (e) {
@@ -95,4 +76,12 @@ const logout = async (req, res) => {
   }
 };
 
-module.exports = { addUser, getAllUsers, updateUser, login, getlUser, logout };
+module.exports = {
+  addUser,
+  getAllUsers,
+  updateUser,
+  login,
+  getlUser,
+  logout,
+  logoutAll,
+};

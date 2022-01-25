@@ -34,6 +34,16 @@ const UserSchema = new Schema({
   ],
 });
 
+UserSchema.methods.toJSON = function () {
+  const user = this;
+  const userObject = user.toObject();
+
+  delete userObject.password;
+  delete userObject.tokens;
+
+  return userObject;
+};
+
 UserSchema.methods.generateToken = async function () {
   const user = this;
   const token = jwt.sign({ email: user.email }, "secretToken", {
@@ -47,17 +57,21 @@ UserSchema.methods.generateToken = async function () {
 UserSchema.statics.findByCredentials = async (email, password) => {
   const user = await User.findOne({ email });
   if (!user) {
-    throw new Error("Unable to login");
+    throw new Error("Email or password is invalid");
   }
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
-    throw new Error("Unable to login");
+    throw new Error("Email or password is invalid");
   }
   return user;
 };
 
 UserSchema.statics.findByToken = async (token) => {
-  return await User.findOne({ "tokens.token": token });
+  const user = await User.findOne({ "tokens.token": token });
+  if (!user) {
+    throw new Error("Token has expired");
+  }
+  return user;
 };
 
 UserSchema.pre("save", async function (next) {

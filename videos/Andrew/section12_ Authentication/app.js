@@ -2,7 +2,8 @@ const express = require("express");
 const { connect } = require("mongoose");
 const chalk = require("chalk");
 const cors = require("cors");
-const auth = require("./middleware/auth");
+const auth = require("./middlewares/auth");
+const validateLogin = require("./middlewares/validateLogin");
 const {
   addUser,
   getAllUsers,
@@ -10,22 +11,11 @@ const {
   login,
   getlUser,
   logout,
+  logoutAll,
 } = require("./utils");
 
 const app = express();
 const port = process.env.PORT || 8080;
-
-// app.use((req, res, next) => {
-// if(req.method==="GET"){
-//     res.send("GET requests are disabled")
-// }else{
-//   next()
-// }
-// });
-
-// app.use((req, res, next)=>{
-//   res.status(503).send("Site is curently down, Chack back soon")
-// })
 
 app.use(cors());
 app.use(express.json());
@@ -33,9 +23,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post("/user/add", addUser);
 
-app.post("/user/login", login);
+app.post("/user/login", validateLogin, login);
 
 app.post("/user/logout", auth, logout);
+
+app.post("/user/logoutAll", auth, logoutAll);
 
 app.get("/users", auth, getAllUsers);
 
@@ -53,3 +45,18 @@ connect(
   },
   (e) => console.error(e)
 );
+
+// const login = async (req, res) => {
+//   let user;
+//   let token;
+//   try{
+//     const { email, password } = req.body;
+//     const tokenBearer = req.header("Authorization");
+//     if (tokenBearer){
+
+//     }
+//   }catch(e){
+//     res.status(400).send(e.message)
+//   }
+
+// }
